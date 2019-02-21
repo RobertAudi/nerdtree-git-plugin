@@ -308,7 +308,7 @@ function! s:jumpToNextHunk(node)
   let l:position = search(s:getRegexForJump(), '')
 
   if l:position
-    " call nerdtree#echo(s:getRegexForJump())
+    call nerdtree#echo('Jump to next hunk ')
   endif
 endfunction
 
