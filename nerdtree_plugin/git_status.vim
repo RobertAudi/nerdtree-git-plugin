@@ -117,7 +117,7 @@ function! g:NERDTreeGitStatusRefresh()
 
     let l:NERDTree = s:NERDTree()
     let l:root = fnamemodify(l:NERDTree.root.path.str(), ":p:S")
-    let l:gitcmd = 'git -c color.status=false status -s'
+    let l:gitcmd = 'git status --porcelain'
     if g:NERDTreeShowIgnoredStatus
         let l:gitcmd = l:gitcmd . ' --ignored'
     endif
