@@ -2,7 +2,7 @@
 " File:        git_status.vim
 " Description: plugin for NERD Tree that provides git status support
 " Maintainer:  Xuyuan Pang <xuyuanp at gmail dot com>
-" Last Change: 17 Mar 2017
+" Last Change: 21 Feb 2019
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
