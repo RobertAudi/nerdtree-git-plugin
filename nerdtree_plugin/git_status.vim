@@ -9,6 +9,8 @@
 "              Want To Public License, Version 2, as published by Sam Hocevar.
 "              See http://sam.zoy.org/wtfpl/COPYING for more details.
 " ============================================================================
+scriptencoding utf-8
+
 if exists('g:loaded_nerdtree_git_status')
   finish
 endif
@@ -53,33 +55,34 @@ endif
 if !exists('g:NERDTreeGitStatusIndicatorMap')
   if g:NERDTreeGitStatusWithFlags == 1
     let g:NERDTreeGitStatusIndicatorMap = {
-          \ 'Modified'  : '✹',
-          \ 'Staged'    : '✚',
-          \ 'Untracked' : '✭',
-          \ 'Renamed'   : '➜',
-          \ 'Unmerged'  : '═',
-          \ 'Deleted'   : '✖',
-          \ 'Dirty'     : '✗',
-          \ 'Clean'     : '✔︎',
-          \ 'Ignored'   : '☒',
-          \ 'Unknown'   : '?'
+          \   'Modified'  : '✹',
+          \   'Staged'    : '✚',
+          \   'Untracked' : '✭',
+          \   'Renamed'   : '➜',
+          \   'Unmerged'  : '═',
+          \   'Deleted'   : '✖',
+          \   'Dirty'     : '✗',
+          \   'Clean'     : '✔︎',
+          \   'Ignored'   : '☒',
+          \   'Unknown'   : '?'
           \ }
   else
     let g:NERDTreeGitStatusIndicatorMap = {
-          \ 'Modified'  : nr2char(8201),
-          \ 'Staged'    : nr2char(8239),
-          \ 'Renamed'   : nr2char(8199),
-          \ 'Unmerged'  : nr2char(8200),
-          \ 'Deleted'   : nr2char(8287),
-          \ 'Dirty'     : nr2char(8202),
-          \ 'Clean'     : nr2char(8196),
-          \ 'Ignored'   : nr2char(8198),
-          \ 'Unknown'   : nr2char(8195),
+          \   'Modified'  : nr2char(8201),
+          \   'Staged'    : nr2char(8239),
+          \   'Renamed'   : nr2char(8199),
+          \   'Unmerged'  : nr2char(8200),
+          \   'Deleted'   : nr2char(8287),
+          \   'Dirty'     : nr2char(8202),
+          \   'Clean'     : nr2char(8196),
+          \   'Ignored'   : nr2char(8198),
+          \   'Unknown'   : nr2char(8195),
           \ }
+
     " Hide the backets
     augroup webdevicons_conceal_nerdtree_brackets
-      au!
-      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+      autocmd!
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree  "\]" contained conceal containedin=ALL
       autocmd FileType nerdtree syntax match hideBracketsInNerdTree ".\[" contained conceal containedin=ALL
       autocmd FileType nerdtree setlocal conceallevel=3
       autocmd FileType nerdtree setlocal concealcursor=nvic
@@ -118,7 +121,7 @@ function! g:NERDTreeGitStatusRefresh()
   let b:NOT_A_GIT_REPOSITORY        = 1
 
   let l:NERDTree = s:NERDTree()
-  let l:root = fnamemodify(l:NERDTree.root.path.str(), ":p:S")
+  let l:root = fnamemodify(l:NERDTree.root.path.str(), ':p:S')
   let l:gitcmd = 'git status --porcelain'
 
   if g:NERDTreeShowIgnoredStatus
@@ -190,7 +193,7 @@ function! g:NERDTreeGitStatusRefresh()
     let l:pathStr = s:Trim(l:pathStr) " trim whitespace
     let b:NERDTreeCachedGitFileStatus[fnameescape(l:pathStr)] = l:statusKey
 
-    if l:statusKey == 'Ignored'
+    if l:statusKey ==# 'Ignored'
       if isdirectory(l:pathStr)
         let b:NERDTreeCachedGitDirtyDir[fnameescape(l:pathStr)] = l:statusKey
       endif
@@ -355,16 +358,18 @@ function! s:NERDTreeGitStatusKeyMapping()
   let l:s = '<SNR>' . s:SID() . '_'
 
   call NERDTreeAddKeyMap({
-        \ 'key': g:NERDTreeMapNextHunk,
-        \ 'scope': 'Node',
-        \ 'callback': l:s.'jumpToNextHunk',
-        \ 'quickhelpText': 'Jump to next git hunk' })
+        \   'key': g:NERDTreeMapNextHunk,
+        \   'scope': 'Node',
+        \   'callback': l:s . 'jumpToNextHunk',
+        \   'quickhelpText': 'Jump to next git hunk'
+        \ })
 
   call NERDTreeAddKeyMap({
-        \ 'key': g:NERDTreeMapPrevHunk,
-        \ 'scope': 'Node',
-        \ 'callback': l:s.'jumpToPrevHunk',
-        \ 'quickhelpText': 'Jump to prev git hunk' })
+        \   'key': g:NERDTreeMapPrevHunk,
+        \   'scope': 'Node',
+        \   'callback': l:s . 'jumpToPrevHunk',
+        \   'quickhelpText': 'Jump to prev git hunk'
+        \ })
 
 endfunction
 
@@ -397,8 +402,8 @@ function! s:CursorHoldUpdate()
   call l:NERDTree.root.refreshFlags()
   call NERDTreeRender()
 
-  exec l:altwinnr . 'wincmd w'
-  exec l:winnr . 'wincmd w'
+  execute l:altwinnr . 'wincmd w'
+  execute l:winnr . 'wincmd w'
 endfunction
 
 augroup nerdtreegitplugin
@@ -439,8 +444,8 @@ function! s:FileUpdate(fname)
 
   call NERDTreeRender()
 
-  exec l:altwinnr . 'wincmd w'
-  exec l:winnr . 'wincmd w'
+  execute l:altwinnr . 'wincmd w'
+  execute l:winnr . 'wincmd w'
 endfunction
 
 augroup AddHighlighting
@@ -460,24 +465,24 @@ function! s:AddHighlighting()
 
   for l:name in keys(l:synmap)
     if g:NERDTreeGitStatusNodeColorization == 1
-      exec 'syn match '.l:name.' ".*'.l:synmap[l:name].'.*" containedin=NERDTreeDir'
-      exec 'syn match '.l:name.' ".*'.l:synmap[l:name].'.*" containedin=NERDTreeFile'
-      exec 'syn match '.l:name.' ".*'.l:synmap[l:name].'.*" containedin=NERDTreeExecFile'
+      execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeDir'
+      execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeFile'
+      execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeExecFile'
     else
-      exec 'syn match ' . l:name . ' #' . escape(l:synmap[l:name], '~') . '# containedin=NERDTreeFlags'
+      execute 'syntax match ' . l:name . ' #' . escape(l:synmap[l:name], '~') . '# containedin=NERDTreeFlags'
     endif
   endfor
 
-  hi def link NERDTreeGitStatusUnmerged Function
-  hi def link NERDTreeGitStatusModified Special
-  hi def link NERDTreeGitStatusStaged Function
-  hi def link NERDTreeGitStatusRenamed Title
-  hi def link NERDTreeGitStatusUnmerged Label
-  hi def link NERDTreeGitStatusUntracked Comment
-  hi def link NERDTreeGitStatusDirDirty Tag
-  hi def link NERDTreeGitStatusDirClean DiffAdd
+  highlight def link NERDTreeGitStatusUnmerged Function
+  highlight def link NERDTreeGitStatusModified Special
+  highlight def link NERDTreeGitStatusStaged Function
+  highlight def link NERDTreeGitStatusRenamed Title
+  highlight def link NERDTreeGitStatusUnmerged Label
+  highlight def link NERDTreeGitStatusUntracked Comment
+  highlight def link NERDTreeGitStatusDirDirty Tag
+  highlight def link NERDTreeGitStatusDirClean DiffAdd
   " TODO: use diff color
-  hi def link NERDTreeGitStatusIgnored DiffAdd
+  highlight def link NERDTreeGitStatusIgnored DiffAdd
 endfunction
 
 function! s:SetupListeners()
