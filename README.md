@@ -3,38 +3,40 @@ nerdtree-git-plugin
 
 A plugin of NERDTree showing git status flags. Works with the **LATEST** version of NERDTree.
 
-The original project [git-nerdtree](https://github.com/Xuyuanp/git-nerdtree) will not be maintained any longer.
+![Preview](preview.gif)
 
+Installation
+------------
 
-![Imgur](http://i.imgur.com/jSCwGjU.gif?1)
+For [pathogen.vim](https://github.com/tpope/vim-pathogen):
 
-## Installation
+```sh
+git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin
+```
 
-For Pathogen
+For [Vundle](https://github.com/VundleVim/Vundle.vim):
 
-`git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin`
+```vim
+Plugin 'scrooloose/nerdtree'
+Plugin 'RobertAudi/nerdtree-git-plugin'
+```
 
-Now reload the `vim`
+For [NeoBundle](https://github.com/Shougo/neobundle.vim):
 
-For Vundle
+```vim
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'RobertAudi/nerdtree-git-plugin'
+```
 
-`Plugin 'scrooloose/nerdtree'`
+For [vim-plug](https://github.com/junegunn/vim-plug):
 
-`Plugin 'Xuyuanp/nerdtree-git-plugin'`
+```vim
+Plug 'scrooloose/nerdtree'
+Plug 'RobertAudi/nerdtree-git-plugin'
+```
 
-For NeoBundle
-
-`NeoBundle 'scrooloose/nerdtree'`
-
-`NeoBundle 'Xuyuanp/nerdtree-git-plugin'`
-
-For Plug
-
-`Plug 'scrooloose/nerdtree'`
-
-`Plug 'Xuyuanp/nerdtree-git-plugin'`
-
-## FAQ
+FAQ
+---
 
 > Got error message like `Error detected while processing function
 177[2]..178[22]..181[7]..144[9]..142[36]..238[4]..NERDTreeGitStatusRefreshListener[2]..NERDTreeGitStatusRefresh:
@@ -49,27 +51,32 @@ This issue has been fixed.
 
 Use this variable to change symbols.
 
-	```vimscript
-	let g:NERDTreeIndicatorMapCustom = {
-	    \ "Modified"  : "✹",
-	    \ "Staged"    : "✚",
-	    \ "Untracked" : "✭",
-	    \ "Renamed"   : "➜",
-	    \ "Unmerged"  : "═",
-	    \ "Deleted"   : "✖",
-	    \ "Dirty"     : "✗",
-	    \ "Clean"     : "✔︎",
-        \ 'Ignored'   : '☒',
-	    \ "Unknown"   : "?"
-	    \ }
-	 ```
+```vim
+let g:NERDTreeIndicatorMapCustom = {
+      \   'Modified'  : '✹',
+      \   'Staged'    : '✚',
+      \   'Untracked' : '✭',
+      \   'Renamed'   : '➜',
+      \   'Unmerged'  : '═',
+      \   'Deleted'   : '✖',
+      \   'Dirty'     : '✗',
+      \   'Clean'     : '✔︎',
+      \   'Ignored'   : '☒',
+      \   'Unknown'   : '?'
+      \ }
+```
 
 > How to show `ignored` status?
 
-`let g:NERDTreeShowIgnoredStatus = 1` (a heavy feature may cost much more time)
+```vim
+let g:NERDTreeShowIgnoredStatus = 1
+```
 
-## Credits
+_Note: this is a heavy feature and may cost much more time_
 
-*  [scrooloose](https://github.com/scrooloose): Open API for me.
-*  [git_nerd](https://github.com/swerner/git_nerd): Where my idea comes from.
-*  [PickRelated](https://github.com/PickRelated): Add custom indicators & Review code.
+Credits
+-------
+
+- [scrooloose](https://github.com/scrooloose): Open API for me.
+- [git_nerd](https://github.com/swerner/git_nerd): Where my idea comes from.
+- [PickRelated](https://github.com/PickRelated): Add custom indicators & Review code.
