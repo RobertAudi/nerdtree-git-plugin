@@ -106,7 +106,7 @@ function! NERDTreeGitStatusRefreshListener(event)
   endif
 endfunction
 
-" FUNCTION: g:NERDTreeGitStatusRefresh() {{{2
+" FUNCTION: g:NERDTreeGitStatusRefresh()
 " refresh cached git status
 function! g:NERDTreeGitStatusRefresh()
   if !g:NERDTree.IsOpen()
@@ -224,7 +224,7 @@ function! s:NERDTreeTrimDoubleQuotes(pathStr)
   return l:toReturn
 endfunction
 
-" FUNCTION: g:NERDTreeGetGitStatusPrefix(path) {{{2
+" FUNCTION: g:NERDTreeGetGitStatusPrefix(path)
 " return the indicator of the path
 " Args: path
 let s:GitStatusCacheTimeExpiry = 2
@@ -262,7 +262,7 @@ function! g:NERDTreeGetGitStatusPrefix(path)
   return s:NERDTreeGetIndicator(l:statusKey)
 endfunction
 
-" FUNCTION: s:NERDTreeGetCWDGitStatus() {{{2
+" FUNCTION: s:NERDTreeGetCWDGitStatus()
 " return the indicator of cwd
 function! g:NERDTreeGetCWDGitStatus()
   if b:NOT_A_GIT_REPOSITORY
@@ -323,7 +323,7 @@ function! s:getRegexForJump()
   return l:regex
 endfunction
 
-" FUNCTION: s:jumpToNextHunk(node) {{{2
+" FUNCTION: s:jumpToNextHunk(node)
 function! s:jumpToNextHunk(node)
   let l:position = search(s:getRegexForJump(), '')
 
@@ -332,7 +332,7 @@ function! s:jumpToNextHunk(node)
   endif
 endfunction
 
-" FUNCTION: s:jumpToPrevHunk(node) {{{2
+" FUNCTION: s:jumpToPrevHunk(node)
 function! s:jumpToPrevHunk(node)
   let l:position = search(s:getRegexForJump(), 'b')
 
@@ -341,7 +341,7 @@ function! s:jumpToPrevHunk(node)
   endif
 endfunction
 
-" Function: s:SID()   {{{2
+" Function: s:SID()
 function s:SID()
   if !exists('s:sid')
     let s:sid = matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
@@ -350,7 +350,7 @@ function s:SID()
   return s:sid
 endfun
 
-" FUNCTION: s:NERDTreeGitStatusKeyMapping {{{2
+" FUNCTION: s:NERDTreeGitStatusKeyMapping
 function! s:NERDTreeGitStatusKeyMapping()
   let l:s = '<SNR>' . s:SID() . '_'
 
@@ -372,7 +372,7 @@ augroup nerdtreegitplugin
   autocmd CursorHold * silent! call s:CursorHoldUpdate()
 augroup END
 
-" FUNCTION: s:CursorHoldUpdate() {{{2
+" FUNCTION: s:CursorHoldUpdate()
 function! s:CursorHoldUpdate()
   if g:NERDTreeUpdateOnCursorHold != 1
     return
@@ -405,7 +405,7 @@ augroup nerdtreegitplugin
   autocmd BufWritePost * call s:FileUpdate(expand('%:p'))
 augroup END
 
-" FUNCTION: s:FileUpdate(fname) {{{2
+" FUNCTION: s:FileUpdate(fname)
 function! s:FileUpdate(fname)
   if g:NERDTreeUpdateOnWrite != 1
     return
