@@ -11,7 +11,7 @@ Installation
 For [pathogen.vim](https://github.com/tpope/vim-pathogen):
 
 ```sh
-git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin
+git clone https://github.com/RobertAudi/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin
 ```
 
 For [Vundle](https://github.com/VundleVim/Vundle.vim):
