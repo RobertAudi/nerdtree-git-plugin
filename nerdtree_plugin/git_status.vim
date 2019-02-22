@@ -72,25 +72,13 @@ if !exists('g:NERDTreeGitStatusIndicatorMap')
         \ }
 endif
 
-if !g:NERDTreeGitStatusWithFlags
-  " Hide the backets
-  augroup webdevicons_conceal_nerdtree_brackets
-    autocmd!
-    autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
-  augroup END
-endif
+augroup NERDTreeGitStatus
+  autocmd!
 
-augroup nerdtreegitplugin
   autocmd CursorHold * silent! call NERDTreeGitStatus#callbacks#CursorHoldUpdate()
-augroup END
-
-augroup nerdtreegitplugin
   autocmd BufWritePost * call NERDTreeGitStatus#callbacks#FileUpdate(expand('%:p'))
-augroup END
-
-
-augroup AddHighlighting
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
+  autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
 augroup END
 
 if g:NERDTreeShowGitStatus
