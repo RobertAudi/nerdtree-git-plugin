@@ -61,7 +61,7 @@ function! NERDTreeGitStatus#Refresh() abort
     endif
   endif
 
-  let l:statusesStr = system(l:gitcmd . ' ' . l:root)
+  let l:statusesStr   = system(l:gitcmd . ' ' . l:root)
   let l:statusesSplit = split(l:statusesStr, '\n')
 
   if l:statusesSplit != [] && l:statusesSplit[0] =~# 'fatal:.*'
@@ -78,7 +78,7 @@ function! NERDTreeGitStatus#Refresh() abort
 
   for l:statusLine in l:statusesSplit
     " cache git status of files
-    let l:pathStr = substitute(l:statusLine, '..', '', '')
+    let l:pathStr   = substitute(l:statusLine, '..', '', '')
     let l:pathSplit = split(l:pathStr, ' -> ')
 
     if len(l:pathSplit) == 2
@@ -96,7 +96,7 @@ function! NERDTreeGitStatus#Refresh() abort
     endif
 
     let l:statusKey = NERDTreeGitStatus#helpers#GetStatusKey(l:statusLine[0], l:statusLine[1])
-    let l:pathStr = NERDTreeGitStatus#utils#TrimWhitespace(l:pathStr)
+    let l:pathStr   = NERDTreeGitStatus#utils#TrimWhitespace(l:pathStr)
     let b:NERDTreeCachedGitFileStatus[fnameescape(l:pathStr)] = l:statusKey
 
     if l:statusKey ==# 'Ignored'

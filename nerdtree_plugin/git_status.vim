@@ -75,8 +75,9 @@ endif
 augroup NERDTreeGitStatus
   autocmd!
 
-  autocmd CursorHold * silent! call NERDTreeGitStatus#callbacks#CursorHoldUpdate()
-  autocmd BufWritePost * call NERDTreeGitStatus#callbacks#FileUpdate(expand('%:p'))
+  autocmd CursorHold   * silent! call NERDTreeGitStatus#callbacks#CursorHoldUpdate()
+  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#FileUpdate(expand('%:p'))
+
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
 augroup END
@@ -98,7 +99,7 @@ if g:NERDTreeShowGitStatus
         \ })
 
   " Setup Listeners
-  call g:NERDTreePathNotifier.AddListener('init', 'NERDTreeGitStatus#RefreshListener')
-  call g:NERDTreePathNotifier.AddListener('refresh', 'NERDTreeGitStatus#RefreshListener')
+  call g:NERDTreePathNotifier.AddListener('init',         'NERDTreeGitStatus#RefreshListener')
+  call g:NERDTreePathNotifier.AddListener('refresh',      'NERDTreeGitStatus#RefreshListener')
   call g:NERDTreePathNotifier.AddListener('refreshFlags', 'NERDTreeGitStatus#RefreshListener')
 endif

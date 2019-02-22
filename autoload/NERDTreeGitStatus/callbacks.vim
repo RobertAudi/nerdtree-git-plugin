@@ -109,16 +109,16 @@ function! NERDTreeGitStatus#callbacks#AddHighlighting() abort
     endif
   endfor
 
-  highlight def link NERDTreeGitStatusUnmerged Function
-  highlight def link NERDTreeGitStatusModified Special
-  highlight def link NERDTreeGitStatusStaged Function
-  highlight def link NERDTreeGitStatusRenamed Title
-  highlight def link NERDTreeGitStatusUnmerged Label
+  highlight def link NERDTreeGitStatusUnmerged  Function
+  highlight def link NERDTreeGitStatusModified  Special
+  highlight def link NERDTreeGitStatusStaged    Function
+  highlight def link NERDTreeGitStatusRenamed   Title
+  highlight def link NERDTreeGitStatusUnmerged  Label
   highlight def link NERDTreeGitStatusUntracked Comment
-  highlight def link NERDTreeGitStatusDirDirty Tag
-  highlight def link NERDTreeGitStatusDirClean DiffAdd
-  " TODO: use diff color
-  highlight def link NERDTreeGitStatusIgnored DiffAdd
+  highlight def link NERDTreeGitStatusDirDirty  Tag
+  highlight def link NERDTreeGitStatusDirClean  DiffAdd
+  " TODO: use different color than NERDTreeGitStatusDirClean
+  highlight def link NERDTreeGitStatusIgnored   DiffAdd
 endfunction
 
 function! NERDTreeGitStatus#callbacks#ConcealFlag() abort

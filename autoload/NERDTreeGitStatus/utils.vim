@@ -9,7 +9,7 @@ function! NERDTreeGitStatus#utils#TrimWhitespace(input_string) abort
 endfunction
 
 function! NERDTreeGitStatus#utils#TrimDoubleQuotes(pathStr) abort
-  let l:toReturn = substitute(a:pathStr, '^"', '', '')
+  let l:toReturn = substitute(a:pathStr,  '^"', '', '')
   let l:toReturn = substitute(l:toReturn, '"$', '', '')
 
   return l:toReturn
