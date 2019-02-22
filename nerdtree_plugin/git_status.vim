@@ -16,6 +16,11 @@ if exists('g:loaded_nerdtree_git_status')
 endif
 let g:loaded_nerdtree_git_status = 1
 
+" Don't bother if git is not installed
+if !executable('git')
+  finish
+endif
+
 if !exists('g:NERDTreeShowGitStatus')
   let g:NERDTreeShowGitStatus = 1
 endif
@@ -103,7 +108,7 @@ augroup AddHighlighting
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
 augroup END
 
-if g:NERDTreeShowGitStatus && executable('git')
+if g:NERDTreeShowGitStatus
   " Setup key maps
   call NERDTreeAddKeyMap({
         \   'key': g:NERDTreeMapNextHunk,
