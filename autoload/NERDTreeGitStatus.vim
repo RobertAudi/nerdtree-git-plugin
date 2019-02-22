@@ -28,14 +28,11 @@ endfunction
 " ---------------------------------------------------------------------------- }}}
 
 function! NERDTreeGitStatus#RefreshListener(event) abort
-  if !g:NERDTree.ExistsForTab() || !g:NERDTree.IsOpen()
+  if !g:NERDTree.ExistsForBuf()
     return
   endif
 
-  let l:NERDTreeBufnr = winbufnr(g:NERDTree.GetWinNum())
-  let l:NOT_A_GIT_REPOSITORY = getbufvar(l:NERDTreeBufnr, 'NOT_A_GIT_REPOSITORY', '')
-
-  if empty(l:NOT_A_GIT_REPOSITORY)
+  if !exists('b:NOT_A_GIT_REPOSITORY')
     call NERDTreeGitStatus#Refresh()
   endif
 
