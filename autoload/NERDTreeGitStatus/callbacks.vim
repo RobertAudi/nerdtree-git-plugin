@@ -85,6 +85,10 @@ function! NERDTreeGitStatus#callbacks#FileUpdate(fname) abort
 endfunction
 
 function! NERDTreeGitStatus#callbacks#AddHighlighting() abort
+  if &filetype !=# 'nerdtree'
+    throw 'NERDTree.NoTreeError: No tree exists for the current buffer'
+  endif
+
   let l:synmap = {
         \   'NERDTreeGitStatusModified'  : NERDTreeGitStatus#helpers#GetIndicator('Modified'),
         \   'NERDTreeGitStatusStaged'    : NERDTreeGitStatus#helpers#GetIndicator('Staged'),
