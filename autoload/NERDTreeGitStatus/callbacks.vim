@@ -100,7 +100,7 @@ function! NERDTreeGitStatus#callbacks#AddHighlighting() abort
         \ }
 
   for l:name in keys(l:synmap)
-    if g:NERDTreeGitStatusNodeColorization == 1
+    if g:NERDTreeGitStatusNodeColorization || !g:NERDTreeGitStatusWithFlags
       execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeDir'
       execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeFile'
       execute 'syntax match ' . l:name . ' ".*' . l:synmap[l:name] . '.*" containedin=NERDTreeExecFile'
@@ -119,4 +119,25 @@ function! NERDTreeGitStatus#callbacks#AddHighlighting() abort
   highlight def link NERDTreeGitStatusDirClean DiffAdd
   " TODO: use diff color
   highlight def link NERDTreeGitStatusIgnored DiffAdd
+endfunction
+
+function! NERDTreeGitStatus#callbacks#ConcealFlag() abort
+  if &filetype !=# 'nerdtree'
+    throw 'NERDTree.NoTreeError: No tree exists for the current buffer'
+  endif
+
+  if !has('conceal')
+    return
+  endif
+
+  if g:NERDTreeGitStatusWithFlags
+    return
+  endif
+
+  let l:regex = NERDTreeGitStatus#helpers#GetIndicatorRegex()
+
+  execute 'syntax match NERDTreeGitStatusFlag "\[\(' . l:regex . '\)\]" contained containedin=ALL conceal keepend'
+
+  setlocal conceallevel=3
+  setlocal concealcursor=nvic
 endfunction

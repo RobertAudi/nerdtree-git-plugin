@@ -58,41 +58,26 @@ if !exists('g:NERDTreeShowIgnoredStatus')
 endif
 
 if !exists('g:NERDTreeGitStatusIndicatorMap')
-  if g:NERDTreeGitStatusWithFlags == 1
-    let g:NERDTreeGitStatusIndicatorMap = {
-          \   'Modified'  : '✹',
-          \   'Staged'    : '✚',
-          \   'Untracked' : '✭',
-          \   'Renamed'   : '➜',
-          \   'Unmerged'  : '═',
-          \   'Deleted'   : '✖',
-          \   'Dirty'     : '✗',
-          \   'Clean'     : '✔︎',
-          \   'Ignored'   : '☒',
-          \   'Unknown'   : '?'
-          \ }
-  else
-    let g:NERDTreeGitStatusIndicatorMap = {
-          \   'Modified'  : nr2char(8201),
-          \   'Staged'    : nr2char(8239),
-          \   'Renamed'   : nr2char(8199),
-          \   'Unmerged'  : nr2char(8200),
-          \   'Deleted'   : nr2char(8287),
-          \   'Dirty'     : nr2char(8202),
-          \   'Clean'     : nr2char(8196),
-          \   'Ignored'   : nr2char(8198),
-          \   'Unknown'   : nr2char(8195),
-          \ }
+  let g:NERDTreeGitStatusIndicatorMap = {
+        \   'Modified'  : '✹',
+        \   'Staged'    : '✚',
+        \   'Untracked' : '✭',
+        \   'Renamed'   : '➜',
+        \   'Unmerged'  : '═',
+        \   'Deleted'   : '✖',
+        \   'Dirty'     : '✗',
+        \   'Clean'     : '✔︎',
+        \   'Ignored'   : '☒',
+        \   'Unknown'   : '?'
+        \ }
+endif
 
-    " Hide the backets
-    augroup webdevicons_conceal_nerdtree_brackets
-      autocmd!
-      autocmd FileType nerdtree syntax match hideBracketsInNerdTree  "\]" contained conceal containedin=ALL
-      autocmd FileType nerdtree syntax match hideBracketsInNerdTree ".\[" contained conceal containedin=ALL
-      autocmd FileType nerdtree setlocal conceallevel=3
-      autocmd FileType nerdtree setlocal concealcursor=nvic
-    augroup END
-  endif
+if !g:NERDTreeGitStatusWithFlags
+  " Hide the backets
+  augroup webdevicons_conceal_nerdtree_brackets
+    autocmd!
+    autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
+  augroup END
 endif
 
 augroup nerdtreegitplugin
