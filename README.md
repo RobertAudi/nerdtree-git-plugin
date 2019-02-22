@@ -38,21 +38,12 @@ Plug 'RobertAudi/nerdtree-git-plugin'
 FAQ
 ---
 
-> Got error message like `Error detected while processing function
-177[2]..178[22]..181[7]..144[9]..142[36]..238[4]..NERDTreeGitStatusRefreshListener[2]..NERDTreeGitStatusRefresh:
-line 6:
-E484: Can't open file /tmp/vZEZ6gM/1` while nerdtree opening in fish, how to resolve this problem?
-
-This was because that vim couldn't execute `system` function in `fish`. Add `set shell=sh` in your vimrc.
-
-This issue has been fixed.
-
 > How to config custom symbols?
 
 Use this variable to change symbols.
 
 ```vim
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMap = {
       \   'Modified'  : '✹',
       \   'Staged'    : '✚',
       \   'Untracked' : '✭',
