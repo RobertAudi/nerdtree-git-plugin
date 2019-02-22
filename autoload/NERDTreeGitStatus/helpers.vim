@@ -21,6 +21,24 @@ function! NERDTreeGitStatus#helpers#CacheDirtyDir(pathStr) abort
   endwhile
 endfunction
 
+function! NERDTreeGitStatus#helpers#GetIndicatorRegex() abort
+  let l:patterns = []
+
+  for l:val in values(g:NERDTreeGitStatusIndicatorMap)
+    if strwidth(val) == 1
+      let l:pattern = '[\d' . char2nr(l:val) . ']'
+    else
+      let l:pattern = l:val
+    endif
+
+    let l:patterns = add(l:patterns, l:pattern)
+  endfor
+
+  let l:regex = join(l:patterns, '\|')
+
+  return l:regex
+endfunction
+
 function! NERDTreeGitStatus#helpers#GetIndicator(statusKey) abort
   return get(g:NERDTreeGitStatusIndicatorMap, a:statusKey, '')
 endfunction

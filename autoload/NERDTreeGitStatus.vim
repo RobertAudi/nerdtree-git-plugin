@@ -4,29 +4,6 @@
 " Last Modified: February 22, 2019
 " ============================================================================
 
-" Private functions {{{
-" ----------------------------------------------------------------------------
-
-function! s:getRegexForJump() abort
-  let l:regex = ''
-
-  for val in values(g:NERDTreeGitStatusIndicatorMap)
-    if strwidth(val) == 1
-      let l:regex = l:regex . '[\d' . char2nr(val) . ']'
-    else
-      let l:regex = l:regex . val
-    endif
-
-    let l:regex = l:regex . '\|'
-  endfor
-
-  let l:regex = strpart(l:regex, 0, strlen(l:regex) - 2)
-
-  return l:regex
-endfunction
-
-" ---------------------------------------------------------------------------- }}}
-
 function! NERDTreeGitStatus#RefreshListener(event) abort
   if !g:NERDTree.ExistsForBuf()
     return
@@ -199,7 +176,7 @@ function! NERDTreeGitStatus#GetCurrentPathIndicator() abort
 endfunction
 
 function! NERDTreeGitStatus#JumpToNextHunk(node) abort
-  let l:position = search(s:getRegexForJump(), '')
+  let l:position = search(NERDTreeGitStatus#helpers#GetIndicatorRegex(), '')
 
   if l:position
     call nerdtree#echo('Jump to next hunk ')
@@ -207,7 +184,7 @@ function! NERDTreeGitStatus#JumpToNextHunk(node) abort
 endfunction
 
 function! NERDTreeGitStatus#JumpToPrevHunk(node) abort
-  let l:position = search(s:getRegexForJump(), 'b')
+  let l:position = search(NERDTreeGitStatus#helpers#GetIndicatorRegex(), 'b')
 
   if l:position
     call nerdtree#echo('Jump to prev hunk ')
