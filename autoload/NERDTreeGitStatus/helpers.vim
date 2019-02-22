@@ -22,13 +22,7 @@ function! NERDTreeGitStatus#helpers#CacheDirtyDir(pathStr) abort
 endfunction
 
 function! NERDTreeGitStatus#helpers#GetIndicator(statusKey) abort
-  let l:indicator = get(g:NERDTreeGitStatusIndicatorMap, a:statusKey, '')
-
-  if l:indicator !=# ''
-    return l:indicator
-  endif
-
-  return ''
+  return get(g:NERDTreeGitStatusIndicatorMap, a:statusKey, '')
 endfunction
 
 function! NERDTreeGitStatus#helpers#GetStatusKey(us, them) abort
@@ -40,7 +34,7 @@ function! NERDTreeGitStatus#helpers#GetStatusKey(us, them) abort
     return 'Staged'
   elseif a:us ==# 'R'
     return 'Renamed'
-  elseif a:us ==# 'U' || a:them ==# 'U' || a:us ==# 'A' && a:them ==# 'A' || a:us ==# 'D' && a:them ==# 'D'
+  elseif a:us ==# 'U' || a:them ==# 'U' || (a:us ==# 'A' && a:them ==# 'A') || (a:us ==# 'D' && a:them ==# 'D')
     return 'Unmerged'
   elseif a:them ==# 'D'
     return 'Deleted'
