@@ -75,8 +75,8 @@ endif
 augroup NERDTreeGitStatus
   autocmd!
 
-  autocmd CursorHold   * silent! call NERDTreeGitStatus#callbacks#CursorHoldUpdate()
-  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#BufWritePostUpdate(expand('%:p'))
+  autocmd CursorHold   * silent! call NERDTreeGitStatus#callbacks#CursorHold#update()
+  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#BufWritePost#update(expand('%:p'))
 
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
