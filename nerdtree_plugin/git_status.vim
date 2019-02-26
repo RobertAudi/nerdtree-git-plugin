@@ -75,12 +75,21 @@ endif
 augroup NERDTreeGitStatus
   autocmd!
 
-  autocmd CursorHold   * silent! call NERDTreeGitStatus#callbacks#CursorHold#update()
-  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#BufWritePost#update(expand('%:p'))
-
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
 augroup END
+
+augroup NERDTreeGitStatusCallbacks
+  autocmd!
+augroup END
+
+if g:NERDTreeGitStatusUpdateOnCursorHold
+  autocmd NERDTreeGitStatusCallbacks CursorHold * silent! call NERDTreeGitStatus#callbacks#CursorHold#update()
+endif
+
+if g:NERDTreeGitStatusUpdateOnWrite
+  autocmd NERDTreeGitStatusCallbacks BufWritePost * call NERDTreeGitStatus#callbacks#BufWritePost#update(expand('%:p'))
+endif
 
 " Setup key maps
 call NERDTreeAddKeyMap({
