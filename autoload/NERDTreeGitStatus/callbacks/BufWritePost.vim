@@ -5,7 +5,7 @@
 " ============================================================================
 
 function! NERDTreeGitStatus#callbacks#BufWritePost#update(fname) abort
-  if g:NERDTreeUpdateOnWrite != 1
+  if g:NERDTreeGitStatusUpdateOnWrite != 1
     return
   endif
 

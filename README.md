@@ -60,7 +60,7 @@ let g:NERDTreeGitStatusIndicatorMap = {
 > How to show `ignored` status?
 
 ```vim
-let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeGitStatusShowIgnoredStatus = 1
 ```
 
 _Note: this is a heavy feature and may cost much more time_

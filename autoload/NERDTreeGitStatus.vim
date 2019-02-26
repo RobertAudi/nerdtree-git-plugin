@@ -1,7 +1,7 @@
 " ============================================================================
 " File: autoload/NERDTreeGitStatus.vim
 " Author: Robert Audi
-" Last Modified: February 22, 2019
+" Last Modified: February 26, 2019
 " ============================================================================
 
 function! NERDTreeGitStatus#RefreshListener(event) abort
@@ -49,7 +49,7 @@ function! NERDTreeGitStatus#Refresh() abort
   let l:root = fnamemodify(b:NERDTree.root.path.str(), ':p:S')
   let l:gitcmd = 'git status --porcelain'
 
-  if g:NERDTreeShowIgnoredStatus
+  if g:NERDTreeGitStatusShowIgnoredStatus
     let l:gitcmd = l:gitcmd . ' --ignored'
   endif
 

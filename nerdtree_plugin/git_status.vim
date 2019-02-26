@@ -21,11 +21,11 @@ if !executable('git')
   finish
 endif
 
-if !exists('g:NERDTreeShowGitStatus')
-  let g:NERDTreeShowGitStatus = 1
+if !exists('g:NERDTreeGitStatusEnabled')
+  let g:NERDTreeGitStatusEnabled = 1
 endif
 
-if g:NERDTreeShowGitStatus == 0
+if g:NERDTreeGitStatusEnabled == 0
   finish
 endif
 
@@ -37,24 +37,24 @@ if !exists('g:NERDTreeGitStatusNodeColorization')
   let g:NERDTreeGitStatusNodeColorization = 0
 endif
 
-if !exists('g:NERDTreeMapNextHunk')
-  let g:NERDTreeMapNextHunk = ']c'
+if !exists('g:NERDTreeGitStatusMapNextHunk')
+  let g:NERDTreeGitStatusMapNextHunk = ']c'
 endif
 
-if !exists('g:NERDTreeMapPrevHunk')
-  let g:NERDTreeMapPrevHunk = '[c'
+if !exists('g:NERDTreeGitStatusMapPrevHunk')
+  let g:NERDTreeGitStatusMapPrevHunk = '[c'
 endif
 
-if !exists('g:NERDTreeUpdateOnWrite')
-  let g:NERDTreeUpdateOnWrite = 1
+if !exists('g:NERDTreeGitStatusUpdateOnWrite')
+  let g:NERDTreeGitStatusUpdateOnWrite = 1
 endif
 
-if !exists('g:NERDTreeUpdateOnCursorHold')
-  let g:NERDTreeUpdateOnCursorHold = 1
+if !exists('g:NERDTreeGitStatusUpdateOnCursorHold')
+  let g:NERDTreeGitStatusUpdateOnCursorHold = 1
 endif
 
-if !exists('g:NERDTreeShowIgnoredStatus')
-  let g:NERDTreeShowIgnoredStatus = 0
+if !exists('g:NERDTreeGitStatusShowIgnoredStatus')
+  let g:NERDTreeGitStatusShowIgnoredStatus = 0
 endif
 
 if !exists('g:NERDTreeGitStatusIndicatorMap')
@@ -84,14 +84,14 @@ augroup END
 
 " Setup key maps
 call NERDTreeAddKeyMap({
-      \   'key': g:NERDTreeMapNextHunk,
+      \   'key': g:NERDTreeGitStatusMapNextHunk,
       \   'scope': 'Node',
       \   'callback': 'NERDTreeGitStatus#JumpToNextHunk',
       \   'quickhelpText': 'Jump to next git hunk'
       \ })
 
 call NERDTreeAddKeyMap({
-      \   'key': g:NERDTreeMapPrevHunk,
+      \   'key': g:NERDTreeGitStatusMapPrevHunk,
       \   'scope': 'Node',
       \   'callback': 'NERDTreeGitStatus#JumpToPrevHunk',
       \   'quickhelpText': 'Jump to prev git hunk'

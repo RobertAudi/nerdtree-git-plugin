@@ -5,7 +5,7 @@
 " ============================================================================
 
 function! NERDTreeGitStatus#callbacks#CursorHold#update() abort
-  if g:NERDTreeUpdateOnCursorHold != 1
+  if g:NERDTreeGitStatusUpdateOnCursorHold != 1
     return
   endif
 
