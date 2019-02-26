@@ -2,7 +2,7 @@
 " File:        git_status.vim
 " Description: plugin for NERD Tree that provides git status support
 " Maintainer:  Xuyuan Pang <xuyuanp at gmail dot com>
-" Last Change: February 22, 2019
+" Last Change: February 26, 2019
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -76,7 +76,7 @@ augroup NERDTreeGitStatus
   autocmd!
 
   autocmd CursorHold   * silent! call NERDTreeGitStatus#callbacks#CursorHoldUpdate()
-  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#FileUpdate(expand('%:p'))
+  autocmd BufWritePost *         call NERDTreeGitStatus#callbacks#BufWritePostUpdate(expand('%:p'))
 
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#AddHighlighting()
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()

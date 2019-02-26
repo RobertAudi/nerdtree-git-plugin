@@ -1,7 +1,7 @@
 " ============================================================================
 " File: autoload/NERDTreeGitStatus/callbacks.vim
 " Author: Robert Audi
-" Last Modified: February 22, 2019
+" Last Modified: February 26, 2019
 " ============================================================================
 
 function! NERDTreeGitStatus#callbacks#CursorHoldUpdate() abort
@@ -37,7 +37,7 @@ function! NERDTreeGitStatus#callbacks#CursorHoldUpdate() abort
   endif
 endfunction
 
-function! NERDTreeGitStatus#callbacks#FileUpdate(fname) abort
+function! NERDTreeGitStatus#callbacks#BufWritePostUpdate(fname) abort
   if g:NERDTreeUpdateOnWrite != 1
     return
   endif
