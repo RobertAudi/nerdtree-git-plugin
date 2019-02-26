@@ -27,3 +27,7 @@ function! NERDTreeGitStatus#utils#exec(cmd) abort
   let &eventignore = l:eventignore_keep
   let &lazyredraw  = l:lazyredraw_keep
 endfunction
+
+function! NERDTreeGitStatus#utils#jump_to_window(winnr) abort
+  call NERDTreeGitStatus#utils#exec('keepjumps keepalt ' . a:winnr . 'wincmd w')
+endfunction
