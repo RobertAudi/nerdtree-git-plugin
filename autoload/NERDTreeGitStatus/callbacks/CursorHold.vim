@@ -30,9 +30,9 @@ function! NERDTreeGitStatus#callbacks#CursorHold#update() abort
   call b:NERDTree.root.refreshFlags()
   call NERDTreeRender()
 
-  redraw
-
   if l:jumpBack
     call NERDTreeGitStatus#utils#exec('keepjumps keepalt ' . l:curWin . 'wincmd w')
   endif
+
+  redraw
 endfunction

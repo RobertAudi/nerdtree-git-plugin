@@ -44,9 +44,9 @@ function! NERDTreeGitStatus#callbacks#BufWritePost#update(fname) abort
 
   call NERDTreeRender()
 
-  redraw
-
   if l:jumpBack
     call NERDTreeGitStatus#utils#exec('keepjumps keepalt ' . l:curWin . 'wincmd w')
   endif
+
+  redraw
 endfunction
