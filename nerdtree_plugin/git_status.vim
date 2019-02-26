@@ -82,24 +82,22 @@ augroup NERDTreeGitStatus
   autocmd FileType nerdtree call NERDTreeGitStatus#callbacks#ConcealFlag()
 augroup END
 
-if g:NERDTreeShowGitStatus
-  " Setup key maps
-  call NERDTreeAddKeyMap({
-        \   'key': g:NERDTreeMapNextHunk,
-        \   'scope': 'Node',
-        \   'callback': 'NERDTreeGitStatus#JumpToNextHunk',
-        \   'quickhelpText': 'Jump to next git hunk'
-        \ })
+" Setup key maps
+call NERDTreeAddKeyMap({
+      \   'key': g:NERDTreeMapNextHunk,
+      \   'scope': 'Node',
+      \   'callback': 'NERDTreeGitStatus#JumpToNextHunk',
+      \   'quickhelpText': 'Jump to next git hunk'
+      \ })
 
-  call NERDTreeAddKeyMap({
-        \   'key': g:NERDTreeMapPrevHunk,
-        \   'scope': 'Node',
-        \   'callback': 'NERDTreeGitStatus#JumpToPrevHunk',
-        \   'quickhelpText': 'Jump to prev git hunk'
-        \ })
+call NERDTreeAddKeyMap({
+      \   'key': g:NERDTreeMapPrevHunk,
+      \   'scope': 'Node',
+      \   'callback': 'NERDTreeGitStatus#JumpToPrevHunk',
+      \   'quickhelpText': 'Jump to prev git hunk'
+      \ })
 
-  " Setup Listeners
-  call g:NERDTreePathNotifier.AddListener('init',         'NERDTreeGitStatus#RefreshListener')
-  call g:NERDTreePathNotifier.AddListener('refresh',      'NERDTreeGitStatus#RefreshListener')
-  call g:NERDTreePathNotifier.AddListener('refreshFlags', 'NERDTreeGitStatus#RefreshListener')
-endif
+" Setup Listeners
+call g:NERDTreePathNotifier.AddListener('init',         'NERDTreeGitStatus#RefreshListener')
+call g:NERDTreePathNotifier.AddListener('refresh',      'NERDTreeGitStatus#RefreshListener')
+call g:NERDTreePathNotifier.AddListener('refreshFlags', 'NERDTreeGitStatus#RefreshListener')
